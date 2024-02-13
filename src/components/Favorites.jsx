@@ -1,11 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { UseSelector, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
+import { deleteFromFavoriteAction } from '../redux/actions'
 const Favorites = () => {
   const navigate = useNavigate()
-  const myFavorites = useSelector((state) => state.favorites.content)
+  const myFavorites = useSelector((state) => state.favorite.content)
   const dispatch = useDispatch()
   return (
     <>
@@ -31,10 +32,7 @@ const Favorites = () => {
                       className="me-2"
                       variant="dark"
                       onClick={() => {
-                        dispatch({
-                          type: 'DELETE_FROM_FAVORITES',
-                          payload: i,
-                        })
+                        dispatch(deleteFromFavoriteAction(i))
                       }}
                     >
                       {' '}
